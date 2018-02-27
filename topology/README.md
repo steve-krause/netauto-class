@@ -1,3 +1,3 @@
 This is the topology
 
-![topology](topology.jpg)
+![topology](lab-topo.png)

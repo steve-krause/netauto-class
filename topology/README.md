@@ -1,3 +1,3 @@
 This is the topology
 
-![topology](file://topology.jpg)
+![topology](topology.jpg)

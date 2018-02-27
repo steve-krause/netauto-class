@@ -1,0 +1,16 @@
+[ios]
+r11
+r21
+r31
+
+[nxos]
+s11
+s12
+s21
+s22
+s31
+s32
+
+[all:vars]
+ansible_user=cisco
+ansible_ssh_pass=cisco

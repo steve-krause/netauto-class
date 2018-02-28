@@ -1,0 +1,15 @@
+---
+- name: Collect IOS Facts from devices. Save them to files
+  hosts: ios
+  vars:
+  - results: results
+  tasks:
+  - file: path={{results}} state=directory
+    run_once: true
+  - ios_facts:
+      gather_subset:
+        - interfaces
+    register: result
+  - copy:
+      content: "{{result.ansible_facts}}"
+      dest: "{{results}}/{{inventory_hostname}}.json"

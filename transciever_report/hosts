@@ -1,0 +1,6 @@
+[nxos]
+sswsb1-nex1-1-a-mgmt
+
+[all:vars]
+ansible_ssh_common_args='-o StrictHostKeyChecking=no'
+ansible_connection=local

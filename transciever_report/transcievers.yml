@@ -1,0 +1,8 @@
+---
+- hosts: nxos
+  vars_files:
+  - ~/Secure/passwords
+  tasks:
+  - nxos_command:
+      commands: show interface transceiver details | xml
+    register: result

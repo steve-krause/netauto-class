@@ -1,0 +1,27 @@
+###############################
+# ./output/raw/sswsb1-nex1-1-b-mgmt
+###############################
+Ethernet1/31
+  type:          Fabric
+  name:          CISCO-FINISAR
+  part_number:   FTLX8570D3BCL-C1
+  serial_number: FNS14190T8V
+  fault:           Current       10.90 mA   +   11.80 mA     4.00 mA    10.80 mA       5.00 mA
+Ethernet1/47
+  type:          10Gbase-SR
+  name:          OEM
+  part_number:   SFP-10G-SR
+  serial_number: M1201250173
+  fault:           Tx Power        N/A     --    1.99 dBm  -10.00 dBm    0.99 dBm     -9.03 dBm
+Ethernet116/1/11
+  type:          10Gbase-SR
+  name:          CISCO-OEM
+  part_number:   SFP-10GB-SR
+  serial_number: YAAI3199
+  fault:           Tx Power        N/A     --    2.00 dBm  -10.04 dBm    0.75 dBm     -8.26 dBm
+Ethernet116/1/21
+  type:          10Gbase-SR
+  name:          OEM
+  part_number:   SFP-10G-SR
+  serial_number: M1202030215
+  fault:           Tx Power        N/A     --    1.99 dBm  -10.00 dBm    0.99 dBm     -9.03 dBm

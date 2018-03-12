@@ -1,5 +1,7 @@
 [nxos]
-sswsb1-nex1-1-a-mgmt
+switch-a-mgmt
+switch-b-mgmt
+
 
 [all:vars]
 ansible_ssh_common_args='-o StrictHostKeyChecking=no'

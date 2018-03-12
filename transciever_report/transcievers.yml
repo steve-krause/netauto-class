@@ -2,13 +2,23 @@
 - name: Retrieve 'show interface transciever details' data
   hosts: nxos
   gather_facts: no
-  connection: local
   vars_files:
   - ~/Secure/passwords
   tasks:
   - nxos_command:
       commands: show interface transceiver details
     register: result
-  - file: path=./output/stdout.raw state=absent
-  - file: path=./output/stdout.raw state=touch
-  - copy: content="{{ result.stdout[0] }}" dest=./output/stdout.raw
+  - file: path=./output/raw/{{ inventory_hostname }} state=absent
+  - file: path=./output/raw/{{ inventory_hostname }} state=touch
+  - file: path=./output/parsed/{{ inventory_hostname }} state=absent
+  - file: path=./output/parsed/{{ inventory_hostname }} state=touch
+  - file: path=./output/transciever-alarms.report state=absent
+  - copy: content="{{ result.stdout[0] }}" dest=./output/raw/{{ inventory_hostname }}
+  - script: ./parse.py ./output/raw/{{ inventory_hostname }} ./output/parsed/{{ inventory_hostname }}
+  - local_action:
+      module: assemble
+      src: ./output/parsed
+      dest: ./output/transciever-alarms.report
+    run_once: True
+
+

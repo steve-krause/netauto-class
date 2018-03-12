@@ -1,0 +1,21 @@
+###############################
+# ./output/raw/sswsb1-nex1-1-a-mgmt
+###############################
+Ethernet1/47
+  type:          10Gbase-SR
+  name:          OEM
+  part_number:   SFP-10G-SR
+  serial_number: M1203100177
+  fault:           Tx Power        N/A     --    1.99 dBm  -10.00 dBm    0.99 dBm     -9.03 dBm
+Ethernet115/1/11
+  type:          10Gbase-SR
+  name:          CISCO-OEM
+  part_number:   SFP-10GB-SR
+  serial_number: YAAI3205
+  fault:           Tx Power        N/A     --    2.00 dBm  -10.04 dBm    0.75 dBm     -8.26 dBm
+Ethernet115/1/22
+  type:          10Gbase-SR
+  name:          OEM
+  part_number:   10G-SFP-SR
+  serial_number: LS10310200
+  fault:           Tx Power        N/A     --    0.00 dBm   -6.00 dBm   -1.00 dBm     -5.00 dBm

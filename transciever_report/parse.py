@@ -1,5 +1,9 @@
-def main():
-    infile = open("./output/stdout.raw", 'r')
+#! /usr/bin/python
+
+import sys
+
+def main(input_filename,output_filename):
+    infile = open(input_filename, 'r')
     rows =  infile.readlines()
     sfps = {}
     sfp = {}
@@ -47,14 +51,23 @@ def main():
                     sfp.update(fault=line.rstrip())
         else:
             continue
-    for key in sfps:
-        s = sfps[key]
-        if 'fault' in s.keys():
-            print (key)
-            for item in sfps[key]:
-                print '  {0}: {1}'.format(item, sfps[key][item])
+    outfile = open(output_filename,'w');
+    outfile.write('###############################\n')
+    outfile.write('# ' + input_filename + '\n')
+    outfile.write('###############################\n')
+    for key in sorted(sfps):
+        interface = sfps[key]
+        if 'fault' in interface.keys():
+            outfile.write(key + '\n')
+            outfile.write('  type:          ' + sfps[key]['type'] + '\n')
+            outfile.write('  name:          ' + sfps[key]['name'] + '\n')
+            outfile.write('  part_number:   ' + sfps[key]['part_number'] + '\n')
+            outfile.write('  serial_number: ' + sfps[key]['serial_number'] + '\n')
+            outfile.write('  fault:         ' + sfps[key]['fault'] + '\n')
+    outfile.close()
 
 #####
 
-main()
-
+if __name__ == "__main__":
+    if len(sys.argv) == 3:
+        main(sys.argv[1], sys.argv[2])

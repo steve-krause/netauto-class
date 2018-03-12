@@ -43,6 +43,7 @@ def main(input_filename,output_filename):
         elif line.startswith("  Tx Power"):
             line.strip()
             if ' - ' in line or ' -- ' in line or ' + ' in line or ' ++ ' in line:
+                # should filter out "Tx Power        N/A     --" to eliminate false-positive
                 sfp.update(fault=line.rstrip())
         elif line.startswith("  Rx Power"):
             line.strip()

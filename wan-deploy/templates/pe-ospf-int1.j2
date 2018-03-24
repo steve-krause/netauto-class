@@ -1,0 +1,9 @@
+interface {{ h_ospf_int1 }}
+ description {{ h_ospf_int1_descr }}
+ mtu {{ g_ospf_int1_mtu }}
+ ip address {{ g_ospf_int1_ip_subnet | ipaddr(h_bgp_community_id) }}
+ ip ospf network point-to-multipoint
+ ip ospf hello-interval {{ g_ospf_int1_ip_ospf_hello_interval }}
+ ip ospf bfd
+ negotiation auto
+ mpls ip

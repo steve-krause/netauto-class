@@ -1,0 +1,19 @@
+{# {{ "PE to CE Links" | comment('plain', prefix='!!!!!!!!\n!', postfix='!\n!!!!!!!!\n') }} #}
+{% for item in i_links %}
+{% if item.pe_name == inventory_hostname %}
+interface {{ item.pe_int }}
+ description {{ item.pe_int_descr }}
+ vrf forwarding gWAN
+ ip address {{ i_ce_to_pe_container_subnet | ipsubnet(30,item.link_index) | ipaddr(1) | ipaddr('address') }} 255.255.255.252
+ no ip proxy-arp
+
+{% endif %}
+{% if item.ce_name == inventory_hostname %}
+interface {{ item.ce_int }}
+ description {{ item.ce_int_descr }}
+ ip address {{ i_ce_to_pe_container_subnet | ipsubnet(30,item.link_index) | ipaddr(2) | ipaddr('address') }} 255.255.255.252
+ no ip proxy-arp
+
+{% endif %}
+{% endfor %}
+

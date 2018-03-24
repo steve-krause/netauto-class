@@ -1,0 +1,6 @@
+---
+h_pe_index: 1
+h_bgp_community_id: 10
+h_bgp_role: RR
+h_ospf_int1: Gi0/1
+h_ospf_int1_descr: CenturyLink 1G VPLS (111111111111) (Serial# 20664756) PP 7-8

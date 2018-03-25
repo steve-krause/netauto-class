@@ -5,34 +5,34 @@ i_links:
 - link_index: 1
   pe_name: rr40
   pe_int: Gi0/3
-  pe_int_descr: XO (Serial# 20365622)(Circuit# 11111111//TQW/ESL)
+  pe_int_descr: XO (Serial# asdfasdf)(Circuit# 11111111//TQW/ESL)
   ce_name: ce1
   ce_int: Gi0/2
-  ce_int_descr: XO (Serial# 20365622)(Circuit# bbbbbbbb//TQW/ESL)
+  ce_int_descr: XO (Serial# asdfasdf)(Circuit# bbbbbbbb//TQW/ESL)
 
 - link_index: 2
   pe_name: p30
   pe_int: Gi0/3
-  pe_int_descr: XO (Serial# 20365622)(Circuit# 22222222//TQW/ESL)
+  pe_int_descr: XO (Serial# asdfasdf)(Circuit# 22222222//TQW/ESL)
   ce_name: ce1
   ce_int: Gi0/1
-  ce_int_descr: XO (Serial# 20365622)(Circuit# cccccccc//TQW/ESL)
+  ce_int_descr: XO (Serial# adsfasdf)(Circuit# cccccccc//TQW/ESL)
 
 - link_index: 3
   pe_name: p30
   pe_int: Gi0/4
-  pe_int_descr: XO (Serial# 20365622)(Circuit# 33333333//TQW/ESL)
+  pe_int_descr: XO (Serial# asdfasdf)(Circuit# 33333333//TQW/ESL)
   ce_name: ce3
   ce_int: Gi0/2
-  ce_int_descr: XO (Serial# 20365622)(Circuit# dddddddd//TQW/ESL)
+  ce_int_descr: XO (Serial# asdfasdf)(Circuit# dddddddd//TQW/ESL)
 
 - link_index: 4
   pe_name: p50
   pe_int: Gi0/3
-  pe_int_descr: XO (Serial# 20365622)(Circuit# 44444444//TQW/ESL)
+  pe_int_descr: XO (Serial# asdfasdf)(Circuit# 44444444//TQW/ESL)
   ce_name: ce3
   ce_int: Gi0/1
-  ce_int_descr: XO (Serial# 20365622)(Circuit# eeeeeeee//TQW/ESL)
+  ce_int_descr: XO (Serial# asdfasdf)(Circuit# eeeeeeee//TQW/ESL)
 
 - link_index: 5
   pe_name: rr10

@@ -1,7 +1,7 @@
 ---
 g_bgp_asn: 65500
-g_pe_mgmt_int_global: Lo100
-g_pe_mgmt_int_gwan: Lo1
+g_pe_mgmt_int_global: Loopback100
+g_pe_mgmt_int_gwan: Loopback1
 g_ospf_int1_ip_ospf_hello_interval: 10
 g_ospf_int1_ip_subnet: 10.229.0.0/24
 g_ospf_int1_mtu: 8900
@@ -9,3 +9,36 @@ g_ospf_process_id: 1
 g_ospf_timers_spf_throttle_1: 5
 g_ospf_timers_spf_throttle_2: 1000
 g_ospf_timers_spf_throttle_3: 32000
+g_vrf_gwan_container_subnet: 10.229.0.0/16
+
+g_pes:
+  rr10:
+    pe_index: 1
+    bgp_role: RR
+    bgp_community_id: 10
+    ospf_int1: GigabitEthernet0/1
+    ospf_int1_descr: CenturyLink 1G VPLS (111111111111) (Serial# 20664756) PP 7-8
+  p20:
+    pe_index: 2
+    bgp_role: RRClient
+    bgp_community_id: 20
+    ospf_int1: GigabitEthernet0/1
+    ospf_int1_descr: CenturyLink 1G VPLS (2222222) (Serial# 20664756) PP 7-8
+  p30:
+    pe_index: 3
+    bgp_role: RRClient
+    bgp_community_id: 30
+    ospf_int1: GigabitEthernet0/1
+    ospf_int1_descr: CenturyLink 1G VPLS (333333333333) (Serial# 20664756) PP 7-8
+  rr40:
+    pe_index: 4
+    bgp_role: RR
+    bgp_community_id: 40
+    ospf_int1: GigabitEthernet0/1
+    ospf_int1_descr: CenturyLink 1G VPLS (444444444444) (Serial# 20664756) PP 7-8
+  p50:
+    pe_index: 5
+    bgp_role: RRClient
+    bgp_community_id: 50
+    ospf_int1: GigabitEthernet0/1
+    ospf_int1_descr: CenturyLink 1G VPLS (5555555555) (Serial# 20664756) PP 7-8

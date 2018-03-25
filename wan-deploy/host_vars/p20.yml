@@ -1,6 +1,0 @@
----
-h_pe_index: 2
-h_bgp_community_id: 20
-h_bgp_role: RRClient
-h_ospf_int1: Gi0/1
-h_ospf_int1_descr: CenturyLink 1G VPLS (2222222) (Serial# 20664756) PP 7-8

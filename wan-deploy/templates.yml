@@ -1,26 +1,34 @@
 ---
-- name: generate the PE routing templates
+- name: generate the PE templates
   hosts: pe
   gather_facts: no
   vars_files:
   - ./includes/links.yml
   tasks:
-  - template:
-      src: ./templates/pe-vrfs.j2
-      dest: ./configs/{{ inventory_hostname }}/vrf.conf
-  - template:
-      src: ./templates/pe-ospf-int1.j2
-      dest: ./configs/{{ inventory_hostname }}/ospf-int1.conf
-  - template:
-      src: ./templates/ce2pe-links-p2p.j2
-      dest: ./configs/{{ inventory_hostname }}/ce2pe-links-p2p.conf
-#
-- name: generate the CE routing templates
+    - name: VRFs
+      template:
+        src: ./templates/pe-vrfs.j2
+        dest: ./configs/{{ inventory_hostname }}/vrf.conf
+    - name: OSPF interface-1
+      template:
+        src: ./templates/pe-ospf-int1.j2
+        dest: ./configs/{{ inventory_hostname }}/ospf-int1.conf
+    - name: CE to PE p2p links
+      template:
+        src: ./templates/ce2pe-links-p2p.j2
+        dest: ./configs/{{ inventory_hostname }}/ce2pe-links-p2p.conf
+    - name: OSPF router
+      template:
+        src: ./templates/pe-ospf.j2
+        dest: ./configs/{{ inventory_hostname }}/pe-ospf.conf
+
+- name: generate the CE templates
   hosts: ce
   gather_facts: no
   vars_files:
   - ./includes/links.yml
   tasks:
-  - template:
-      src: ./templates/ce2pe-links-p2p.j2
-      dest: ./configs/{{ inventory_hostname }}/ce2pe-links-p2p.conf
+    - name: CE to PE p2p links
+      template:
+        src: ./templates/ce2pe-links-p2p.j2
+        dest: ./configs/{{ inventory_hostname }}/ce2pe-links-p2p.conf

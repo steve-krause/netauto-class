@@ -1,4 +1,9 @@
-{# {{ "PE to CE Links" | comment('plain', prefix='!!!!!!!!\n!', postfix='!\n!!!!!!!!\n') }} #}
+!!!
+!
+! CE to PE point-to-point links
+!
+!!!
+
 {% for item in i_links %}
 {% if item.pe_name == inventory_hostname %}
 interface {{ item.pe_int }}

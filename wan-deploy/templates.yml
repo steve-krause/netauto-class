@@ -1,34 +1,50 @@
 ---
-- name: generate the PE templates
+- name: generate and assemble the PE config snippets
   hosts: pe
   gather_facts: no
   vars_files:
   - ./includes/links.yml
   tasks:
-    - name: VRFs
+    - name: generate VRF snippets
       template:
         src: ./templates/pe-vrfs.j2
-        dest: ./configs/{{ inventory_hostname }}/vrf.conf
-    - name: OSPF interface-1
+        dest: ./configs/{{ inventory_hostname }}/10-vrf.conf
+    - name: generate routing loopback snippets
       template:
-        src: ./templates/pe-ospf-int1.j2
-        dest: ./configs/{{ inventory_hostname }}/ospf-int1.conf
-    - name: CE to PE p2p links
+        src: ./templates/pe-loopback-ints.j2
+        dest: ./configs/{{ inventory_hostname }}/20-pe-loopback-ints.conf
+    - name: generate CE to PE p2p link snippets
       template:
         src: ./templates/ce2pe-links-p2p.j2
-        dest: ./configs/{{ inventory_hostname }}/ce2pe-links-p2p.conf
-    - name: OSPF router
+        dest: ./configs/{{ inventory_hostname }}/30-ce2pe-links-p2p.conf
+    - name: generate OSPF interface-1 snippets
+      template:
+        src: ./templates/pe-ospf-int1.j2
+        dest: ./configs/{{ inventory_hostname }}/40-ospf-int1.conf
+    - name: generate OSPF router snippets
       template:
         src: ./templates/pe-ospf.j2
-        dest: ./configs/{{ inventory_hostname }}/pe-ospf.conf
+        dest: ./configs/{{ inventory_hostname }}/50pe-ospf.conf
+    - name: Assemble snippets into PE configuration scripts
+      assemble:
+        src: ./configs/{{ inventory_hostname }}/
+        dest: ./configs/{{ inventory_hostname }}.conf
 
-- name: generate the CE templates
+- name: generate and assemble the CE config snippets
   hosts: ce
   gather_facts: no
   vars_files:
   - ./includes/links.yml
   tasks:
-    - name: CE to PE p2p links
+    - name: generate CE BGP snippets
+      template:
+        src: ./templates/ce-bgp.j2
+        dest: ./configs/{{ inventory_hostname }}/20-ce2pe-links-p2p.conf
+    - name: generate CE to PE p2p link snippets
       template:
         src: ./templates/ce2pe-links-p2p.j2
-        dest: ./configs/{{ inventory_hostname }}/ce2pe-links-p2p.conf
+        dest: ./configs/{{ inventory_hostname }}/10-ce2pe-links-p2p.conf
+    - name: Assemble snippets into CE configuration scripts
+      assemble:
+        src: ./configs/{{ inventory_hostname }}/
+        dest: ./configs/{{ inventory_hostname }}.conf

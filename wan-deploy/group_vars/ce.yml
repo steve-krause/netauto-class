@@ -1,8 +1,9 @@
 ---
-g_ce_mgmt_int_global: Lo0
+g_ce_mgmt_int: Loopback0
+g_ce_mgmt_int_container_subnet: 192.168.0.0/24
 g_ce_base_bgp_asn: 65510
 
-g_pes:
+g_ce_dict:
   ce1:
     ce_index: 1
   ce2:

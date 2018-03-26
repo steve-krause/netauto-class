@@ -24,7 +24,11 @@
     - name: generate OSPF router snippets
       template:
         src: ./templates/pe-ospf.j2
-        dest: ./configs/{{ inventory_hostname }}/50pe-ospf.conf
+        dest: ./configs/{{ inventory_hostname }}/50-pe-ospf.conf
+    - name: generate BGP router snippets
+      template:
+        src: ./templates/pe-bgp.j2
+        dest: ./configs/{{ inventory_hostname }}/60-pe-bgp.conf
     - name: Assemble snippets into PE configuration scripts
       assemble:
         src: ./configs/{{ inventory_hostname }}/
@@ -36,14 +40,18 @@
   vars_files:
   - ./includes/links.yml
   tasks:
-    - name: generate CE BGP snippets
-      template:
-        src: ./templates/ce-bgp.j2
-        dest: ./configs/{{ inventory_hostname }}/20-ce2pe-links-p2p.conf
     - name: generate CE to PE p2p link snippets
       template:
         src: ./templates/ce2pe-links-p2p.j2
         dest: ./configs/{{ inventory_hostname }}/10-ce2pe-links-p2p.conf
+    - name: generate CE Loopback int snippets
+      template:
+        src: ./templates/ce-loopback-ints.j2
+        dest: ./configs/{{ inventory_hostname }}/20-ce-loopback-ints.conf
+    - name: generate CE BGP snippets
+      template:
+        src: ./templates/ce-bgp.j2
+        dest: ./configs/{{ inventory_hostname }}/30-ce-bgp.conf
     - name: Assemble snippets into CE configuration scripts
       assemble:
         src: ./configs/{{ inventory_hostname }}/

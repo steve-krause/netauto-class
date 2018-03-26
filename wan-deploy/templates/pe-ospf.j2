@@ -8,7 +8,7 @@ router ospf {{ g_ospf_process_id }}
  timers throttle spf {{ g_ospf_timers_spf_throttle_1 }} {{ g_ospf_timers_spf_throttle_2 }} {{ g_ospf_timers_spf_throttle_3 }}
  passive-interface default
  no passive-interface {{ g_pe_dict[inventory_hostname].ospf_int1 }}
- network {{ g_ospf_int1_ip_subnet | ipaddr('address') }} 0.0.0.255 area 0
+ network {{ g_ospf_int1_ip_subnet | ipaddr('network') }} 0.0.0.255 area 0
  network {{ g_vrf_gwan_container_subnet | ipsubnet(20, g_pe_dict[inventory_hostname].pe_index) | ipaddr(10) | ipaddr('address') }} 0.0.0.0 area 0
 {% for item in g_pe_dict %}
 {% if item != inventory_hostname %}

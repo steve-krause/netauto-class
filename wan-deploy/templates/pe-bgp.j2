@@ -1,1 +1,42 @@
-{% set gwan_bgp_asn =
+!!!!!!!!!!!!
+!
+! PE BGP Router
+!
+!!!!!!!!!!!!
+router bgp {{ a_bgp_asn_dict[inventory_hostname].bgp_asn }}
+ bgp router-id {{ g_vrf_gwan_container_subnet | ipsubnet(20, g_pe_dict[inventory_hostname].pe_index) | ipaddr(10) | ipaddr('address') }}
+ bgp cluster-id {{ a_bgp_asn_dict[inventory_hostname].bgp_asn }}
+ bgp log-neighbor-changes
+ no bgp default ipv4-unicast
+{% for item in g_pe_dict %}
+{% if item != inventory_hostname %}
+ neighbor {{ g_vrf_gwan_container_subnet | ipsubnet(20, g_pe_dict[item].pe_index) | ipaddr(10) | ipaddr('address') }} remote-as {{ a_bgp_asn_dict[item].bgp_asn }}
+ neighbor {{ g_vrf_gwan_container_subnet | ipsubnet(20, g_pe_dict[item].pe_index) | ipaddr(10) | ipaddr('address') }} update-source {{ g_pe_mgmt_int_global }}
+ neighbor {{ g_vrf_gwan_container_subnet | ipsubnet(20, g_pe_dict[item].pe_index) | ipaddr(10) | ipaddr('address') }} timers 10 30
+ neighbor {{ g_vrf_gwan_container_subnet | ipsubnet(20, g_pe_dict[item].pe_index) | ipaddr(10) | ipaddr('address') }} description {{ item }}
+{% endif %}
+{% endfor %}
+ !
+ address-family vpnv4
+{% for item in g_pe_dict %}
+{% if item != inventory_hostname %}
+  neighbor {{ g_vrf_gwan_container_subnet | ipsubnet(20, g_pe_dict[item].pe_index) | ipaddr(10) | ipaddr('address') }} activate
+  neighbor {{ g_vrf_gwan_container_subnet | ipsubnet(20, g_pe_dict[item].pe_index) | ipaddr(10) | ipaddr('address') }} send-community extended
+  neighbor {{ g_vrf_gwan_container_subnet | ipsubnet(20, g_pe_dict[item].pe_index) | ipaddr(10) | ipaddr('address') }} next-hop-self
+  neighbor {{ g_vrf_gwan_container_subnet | ipsubnet(20, g_pe_dict[item].pe_index) | ipaddr(10) | ipaddr('address') }} send-community both
+{% endif %}
+{% endfor %}
+ exit-address-family
+ !
+ address-family ipv4 vrf gWAN
+  bgp router-id {{ g_vrf_gwan_container_subnet | ipsubnet(20, g_pe_dict[inventory_hostname].pe_index) | ipaddr(11) | ipaddr('address') }}
+{% for link in i_link_list %}
+{% if link.pe_name == inventory_hostname %}
+  neighbor {{ i_ce_to_pe_container_subnet | ipsubnet(30,link.link_index) | ipaddr(2) | ipaddr('address') }} remote-as {{ a_bgp_asn_dict[link.ce_name].bgp_asn }}
+  neighbor {{ i_ce_to_pe_container_subnet | ipsubnet(30,link.link_index) | ipaddr(2) | ipaddr('address') }} description {{ link.ce_name }}
+  neighbor {{ i_ce_to_pe_container_subnet | ipsubnet(30,link.link_index) | ipaddr(2) | ipaddr('address') }} soft-reconfiguration inbound
+  neighbor {{ i_ce_to_pe_container_subnet | ipsubnet(30,link.link_index) | ipaddr(2) | ipaddr('address') }} send-community both
+  neighbor {{ i_ce_to_pe_container_subnet | ipsubnet(30,link.link_index) | ipaddr(2) | ipaddr('address') }} activate
+{% endif %}
+{% endfor %}
+ exit-address-family

@@ -17,9 +17,9 @@ vrf definition INET
  exit-address-family
 !
 vrf definition gWAN
- rd {{ a_gwan_bgp_asn }}:1
+ rd {{ a_bgp_asn_dict[inventory_hostname].bgp_asn }}:1
  !
  address-family ipv4
-  route-target export {{ a_gwan_bgp_asn }}:1
-  route-target import {{ a_gwan_bgp_asn }}:1
+  route-target export {{ a_bgp_asn_dict[inventory_hostname].bgp_asn }}:1
+  route-target import {{ a_bgp_asn_dict[inventory_hostname].bgp_asn }}:1
  exit-address-family

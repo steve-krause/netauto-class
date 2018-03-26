@@ -1,2 +1,21 @@
 ---
-a_gwan_bgp_asn: 65500
+a_bgp_asn_dict:
+  ce1:
+    bgp_asn: 65511
+  ce2:
+    bgp_asn: 65512
+  ce3:
+    bgp_asn: 65513
+  ce4:
+    bgp_asn: 65514
+  rr10:
+    bgp_asn: 65500
+  p20:
+    bgp_asn: 65500
+  p30:
+    bgp_asn: 65500
+  rr40:
+    bgp_asn: 65500
+  p50:
+    bgp_asn: 65500
+

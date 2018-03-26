@@ -1,35 +1,25 @@
-{% macro router_id(subnet, index) %}
-  {{ subnet | ipaddr(index) | ipaddr('address') }}
-{% endmacro %}
-
-
-
-{% macro p2p_neighbor_ip(container_subnet, link_index) %}
-  {{ container_subnet | ipsubnet(30,link_index) | ipaddr(1) | ipaddr('address') }}
-{% endmacro %}
-{#
-{% set self_router_id = {{ g_ce_mgmt_int_container_subnet | ipaddr(g_ce_dict[inventory_hostname].ce_index) | ipaddr('address') }} %}
- #}
-router bgp {{ 65510 + g_ce_dict[inventory_hostname].ce_index }}
- {#bgp router-id {{ self_router_id }}#}
+!!!!!!!!!!!!
+!
+! CE BGP Routing
+!
+!!!!!!!!!!!!
+router bgp {{ a_bgp_asn_dict[inventory_hostname].bgp_asn }}
+ bgp router-id {{ g_ce_mgmt_int_container_subnet | ipaddr(g_ce_dict[inventory_hostname].ce_index) | ipaddr('address') }}
  bgp log-neighbor-changes
- neighbor 10.0.0.17 remote-as 65500
- neighbor 10.0.0.17 description eBGP to p30
- neighbor 10.0.128.5 remote-as 65500
- neighbor 10.0.128.5 description eBGP to rr40
- !
- address-family ipv4
-  network {{ router_id(g_ce_mgmt_int_container_subnet, g_ce_dict[inventory_hostname].ce_index ) }} mask 255.255.255.255
-  neighbor 10.0.0.17 activate
-  neighbor 10.0.0.17 send-community
-  neighbor 10.0.0.17 next-hop-self
-  neighbor 10.0.128.5 activate
-  neighbor 10.0.128.5 send-community
-  neighbor 10.0.128.5 next-hop-self
- exit-address-family
-
 {% for link in i_link_list %}
 {% if link.ce_name == inventory_hostname %}
-  neighbor p2p-neighbor-ip(i_ce_to_pe_container_subnet, link.link_index) remote-as {{ a_gwan_bgp_asn }}
+ neighbor {{ i_ce_to_pe_container_subnet | ipsubnet(30, link.link_index) | ipaddr(1) | ipaddr('address') }}  remote-as {{ a_bgp_asn_dict[link.pe_name].bgp_asn }}
+ neighbor {{ i_ce_to_pe_container_subnet | ipsubnet(30, link.link_index) | ipaddr(1) | ipaddr('address') }} description eBGP to {{ link.pe_name }}
 {% endif %}
 {% endfor %}
+ !
+ address-family ipv4
+  network {{ g_ce_mgmt_int_container_subnet | ipaddr(g_ce_dict[inventory_hostname].ce_index) | ipaddr('address') }} mask 255.255.255.255
+{% for link in i_link_list %}
+{% if link.ce_name == inventory_hostname %}
+  neighbor {{ i_ce_to_pe_container_subnet | ipsubnet(30, link.link_index) | ipaddr(1) | ipaddr('address') }} activate
+  neighbor {{ i_ce_to_pe_container_subnet | ipsubnet(30, link.link_index) | ipaddr(1) | ipaddr('address') }} send-community
+  neighbor {{ i_ce_to_pe_container_subnet | ipsubnet(30, link.link_index) | ipaddr(1) | ipaddr('address') }} next-hop-self
+{% endif %}
+{% endfor %}
+ exit-address-family

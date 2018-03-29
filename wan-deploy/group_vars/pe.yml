@@ -16,7 +16,7 @@ g_pe_dict:
     bgp_role: RR
     bgp_community_id: 10
     ospf_int1: GigabitEthernet0/1
-    ospf_int1_descr: CenturyLink 1G VPLS (111111111111) (Serial# 1111111111) PP 7-8
+    ospf_int1_descr: CenturyLink 1G VPLS (88888888) (Serial# 1111111111) PP 7-8
   p20:
     pe_index: 2
     bgp_role: RRClient
@@ -28,7 +28,7 @@ g_pe_dict:
     bgp_role: RRClient
     bgp_community_id: 30
     ospf_int1: GigabitEthernet0/1
-    ospf_int1_descr: CenturyLink 1G VPLS (333333333333) (Serial# 333333) PP 7-8
+    ospf_int1_descr: CenturyLink 1G VPLS (333333333333) (Serial# 444444) PP 7-8
   rr40:
     pe_index: 4
     bgp_role: RR

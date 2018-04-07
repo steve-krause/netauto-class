@@ -1,59 +1,60 @@
 ---
-i_ce_to_pe_container_subnet: 10.5.0.0/24
-i_ce_to_pe_masklength: 30
-i_link_list:
-- link_index: 1
+ce2pe_container_subnet: 10.5.0.0/24
+ce2pe_masklength: 30
+
+ce2pe_link_list:
+- ce2pe_link_index: 1
   pe_name: rr40
-  pe_int: Gi0/3
+  pe_int: GigabitEthernet0/3
   pe_int_descr: ce1 - XO (Serial# asdfasdf)(Circuit# sssssss//TQW/ESL)
   ce_name: ce1
-  ce_int: Gi0/2
+  ce_int: GigabitEthernet0/2
   ce_int_descr: rr40 - XO (Serial# asdfasdf)(Circuit# 66666666//TQW/ESL)
 
-- link_index: 2
+- ce2pe_link_index: 2
   pe_name: p30
-  pe_int: Gi0/3
+  pe_int: GigabitEthernet0/3
   pe_int_descr: ce1 - XO (Serial# asdfasdf)(Circuit# 22222222//TQW/ESL)
   ce_name: ce1
-  ce_int: Gi0/1
+  ce_int: GigabitEthernet0/1
   ce_int_descr: p30 - XO (Serial# adsfasdf)(Circuit# cccccccc//TQW/ESL)
 
-- link_index: 3
+- ce2pe_link_index: 3
   pe_name: p30
-  pe_int: Gi0/4
+  pe_int: GigabitEthernet0/4
   pe_int_descr: ce3 - XO (Serial# asdfasdf)(Circuit# 33333333//TQW/ESL)
   ce_name: ce3
-  ce_int: Gi0/2
+  ce_int: GigabitEthernet0/2
   ce_int_descr: p30 - XO (Serial# asdfasdf)(Circuit# dddddddd//TQW/ESL)
 
-- link_index: 4
+- ce2pe_link_index: 4
   pe_name: p50
-  pe_int: Gi0/3
+  pe_int: GigabitEthernet0/3
   pe_int_descr: ce3 - XO (Serial# asdfasdf)(Circuit# 44444444//TQW/ESL)
   ce_name: ce3
-  ce_int: Gi0/1
+  ce_int: GigabitEthernet0/1
   ce_int_descr: p50 - XO (Serial# asdfasdf)(Circuit# eeeeeeee//TQW/ESL)
 
-- link_index: 5
+- ce2pe_link_index: 5
   pe_name: rr10
-  pe_int: Gi0/3
+  pe_int: GigabitEthernet0/3
   pe_int_descr: ce4 - XO (Serial# sadfasdf)(Circuit# 55555555//TQW/ESL)
   ce_name: ce4
-  ce_int: Gi0/1
+  ce_int: GigabitEthernet0/1
   ce_int_descr: rr10 - XO (Serial# asdfasdf)(Circuit# ffffffff//TQW/ESL)
 
-- link_index: 6
+- ce2pe_link_index: 6
   pe_name: rr10
-  pe_int: Gi0/4
+  pe_int: GigabitEthernet0/4
   pe_int_descr: ce2 - XO (Serial# asdfasdf)(Circuit# 66666666//TQW/ESL)
   ce_name: ce2
-  ce_int: Gi0/1
+  ce_int: GigabitEthernet0/1
   ce_int_descr: rr10 - XO (Serial# asdasdf)(Circuit# gggggggg//TQW/ESL)
 
-- link_index: 7
+- ce2pe_link_index: 7
   pe_name: p20
-  pe_int: Gi0/3
+  pe_int: GigabitEthernet0/3
   pe_int_descr: ce2 - XO (Serial# asdfsadf)(Circuit# 77777777//TQW/ESL)
   ce_name: ce2
-  ce_int: Gi0/2
+  ce_int: GigabitEthernet0/2
   ce_int_descr: p20 - XO (Serial# asdfasdf)(Circuit# hhhhhhhh//TQW/ESL)

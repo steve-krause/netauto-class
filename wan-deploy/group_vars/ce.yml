@@ -1,12 +1,3 @@
 ---
-g_ce_mgmt_int: Loopback0
-g_ce_mgmt_int_container_subnet: 192.168.0.0/24
-g_ce_dict:
-  ce1:
-    ce_index: 1
-  ce2:
-    ce_index: 2
-  ce3:
-    ce_index: 3
-  ce4:
-    ce_index: 4
+ce_mgmt_int: Loopback0
+ce_mgmt_int_container_subnet: 192.168.0.0/24

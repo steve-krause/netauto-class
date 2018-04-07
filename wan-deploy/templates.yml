@@ -3,7 +3,7 @@
   hosts: pe
   gather_facts: no
   vars_files:
-  - ./includes/links.yml
+  - ./includes/ce2pe_links.yml
   tasks:
     - name: generate VRF snippets
       template:
@@ -38,7 +38,7 @@
   hosts: ce
   gather_facts: no
   vars_files:
-  - ./includes/links.yml
+  - ./includes/ce2pe_links.yml
   tasks:
     - name: generate CE to PE p2p link snippets
       template:

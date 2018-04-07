@@ -3,6 +3,6 @@
 ! PE Loopback links for OSPF and BGP routing
 !
 !!!!!!!!!!!!
-interface {{ g_ce_mgmt_int }}
+interface {{ ce_mgmt_int }}
  description Router-ID Loopback
- ip address {{ g_ce_mgmt_int_container_subnet | ipaddr(g_ce_dict[inventory_hostname].ce_index) | ipaddr('address') }} 255.255.255.255
+ ip address {{ ce_mgmt_int_container_subnet | ipaddr(hostvars[inventory_hostname].ce_index) | ipaddr('address') }} 255.255.255.255

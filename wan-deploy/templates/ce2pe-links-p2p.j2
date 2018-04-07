@@ -3,19 +3,19 @@
 ! CE to PE point-to-point links
 !
 !!!!!!!!!!!!
-{% for link in i_link_list %}
+{% for link in ce2pe_link_list %}
 {% if link.pe_name == inventory_hostname %}
 interface {{ link.pe_int }}
  description {{ link.pe_int_descr }}
  vrf forwarding gWAN
- ip address {{ i_ce_to_pe_container_subnet | ipsubnet(30,link.link_index) | ipaddr(1) | ipaddr('address') }} 255.255.255.252
+ ip address {{ ce2pe_container_subnet | ipsubnet(ce2pe_masklength,link.ce2pe_link_index) | ipaddr(1) | ipaddr('address') }} 255.255.255.252
  no ip proxy-arp
 
 {% endif %}
 {% if link.ce_name == inventory_hostname %}
 interface {{ link.ce_int }}
  description {{ link.ce_int_descr }}
- ip address {{ i_ce_to_pe_container_subnet | ipsubnet(30,link.link_index) | ipaddr(2) | ipaddr('address') }} 255.255.255.252
+ ip address {{ ce2pe_container_subnet | ipsubnet(ce2pe_masklength,link.ce2pe_link_index) | ipaddr(2) | ipaddr('address') }} 255.255.255.252
  no ip proxy-arp
 
 {% endif %}

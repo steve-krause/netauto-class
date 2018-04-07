@@ -1,0 +1,42 @@
+---
+#- name: Backup current hosts
+#  hosts: all
+#  gather_facts: no
+#  vars_files:
+#  - ~/Secure/passwords
+#  tasks:
+#    - name: Clean backup directory
+#      file:
+#        state: absent
+#        path: ./backups/
+#      run_once: true
+#    - name: Get new backups of all hosts
+#      ios_config:
+#        backup: yes
+- name: Merge CE configurations
+  hosts: ce
+  gather_facts: no
+  vars_files:
+  - ~/Secure/passwords
+  tasks:
+    - name: Merge configs
+      ios_config:
+        src: ./configs/{{ inventory_hostname }}.conf
+        diff_against: startup
+        defaults: false
+      register: changes
+    - debug: var=changes
+- name: Merge PE configurations
+  hosts: pe
+  gather_facts: no
+  vars_files:
+  - ~/Secure/passwords
+  tasks:
+    - name: Merge configs
+      ios_config:
+        src: ./configs/{{ inventory_hostname }}.conf
+        diff_against: startup
+        defaults: false
+        match: none
+      register: changes
+    - debug: var=changes

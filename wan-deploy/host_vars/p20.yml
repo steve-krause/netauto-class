@@ -1,0 +1,6 @@
+---
+pe_index: 2
+bgp_asn: 65500
+bgp_community_id: 20
+ospf_int1: GigabitEthernet0/1
+ospf_int1_descr: CenturyLink 1G VPLS (222222) (Serial# 22222222) PP 7-8

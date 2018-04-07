@@ -4,22 +4,22 @@
 !
 !!!!!!!!!!!!
 vrf definition INET
- rd {{ g_pe_dict[inventory_hostname].bgp_community_id }}:167
+ rd {{ hostvars[inventory_hostname].bgp_community_id }}:167
  !
  address-family ipv4
-  route-target export {{ g_pe_dict[inventory_hostname].bgp_community_id }}:167
-  route-target import {{ g_pe_dict[inventory_hostname].bgp_community_id }}:167
+  route-target export {{ hostvars[inventory_hostname].bgp_community_id }}:167
+  route-target import {{ hostvars[inventory_hostname].bgp_community_id }}:167
  exit-address-family
  !
  address-family ipv6
-  route-target export {{ g_pe_dict[inventory_hostname].bgp_community_id }}:167
-  route-target import {{ g_pe_dict[inventory_hostname].bgp_community_id }}:167
+  route-target export {{ hostvars[inventory_hostname].bgp_community_id }}:167
+  route-target import {{ hostvars[inventory_hostname].bgp_community_id }}:167
  exit-address-family
 !
 vrf definition gWAN
- rd {{ a_bgp_asn_dict[inventory_hostname].bgp_asn }}:1
+ rd {{ hostvars[inventory_hostname].bgp_asn }}:1
  !
  address-family ipv4
-  route-target export {{ a_bgp_asn_dict[inventory_hostname].bgp_asn }}:1
-  route-target import {{ a_bgp_asn_dict[inventory_hostname].bgp_asn }}:1
+  route-target export {{ hostvars[inventory_hostname].bgp_asn }}:1
+  route-target import {{ hostvars[inventory_hostname].bgp_asn }}:1
  exit-address-family

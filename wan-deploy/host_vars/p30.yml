@@ -1,0 +1,6 @@
+---
+pe_index: 3
+bgp_asn: 65500
+bgp_community_id: 30
+ospf_int1: GigabitEthernet0/1
+ospf_int1_descr: CenturyLink 1G VPLS (333333) (Serial# 3333333) PP 7-8

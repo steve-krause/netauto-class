@@ -3,11 +3,11 @@
 ! PE Loopback links for OSPF and BGP routing
 !
 !!!!!!!!!!!!
-interface {{ g_pe_mgmt_int_global }}
+interface {{ pe_mgmt_int_global }}
  description GlobalTable Loopback
- ip address {{ g_vrf_gwan_container_subnet | ipsubnet(20, g_pe_dict[inventory_hostname].pe_index) | ipaddr(10) | ipaddr('address') }} 255.255.255.255
+ ip address {{ pe_vrf_gwan_container_subnet | ipsubnet(20, hostvars[inventory_hostname].pe_index) | ipaddr(10) | ipaddr('address') }} 255.255.255.255
 
-interface {{ g_pe_mgmt_int_gwan }}
+interface {{ pe_mgmt_int_gwan }}
  description gWAN Loopback
  vrf forwarding gWAN
- ip address {{ g_vrf_gwan_container_subnet | ipsubnet(20, g_pe_dict[inventory_hostname].pe_index) | ipaddr(11) | ipaddr('address') }} 255.255.255.255
+ ip address {{ pe_vrf_gwan_container_subnet | ipsubnet(20, hostvars[inventory_hostname].pe_index) | ipaddr(11) | ipaddr('address') }} 255.255.255.255

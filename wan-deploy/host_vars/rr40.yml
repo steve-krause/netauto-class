@@ -1,0 +1,6 @@
+---
+pe_index: 4
+bgp_asn: 65500
+bgp_community_id: 40
+ospf_int1: GigabitEthernet0/1
+ospf_int1_descr: CenturyLink 1G VPLS (40404040) (Serial# 40404040) PP 7-8

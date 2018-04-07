@@ -1,0 +1,6 @@
+---
+pe_index: 5
+bgp_asn: 65500
+bgp_community_id: 50
+ospf_int1: GigabitEthernet0/1
+ospf_int1_descr: CenturyLink 1G VPLS (5050505050) (Serial# 5050505050) PP 7-8

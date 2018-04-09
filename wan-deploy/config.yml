@@ -22,7 +22,7 @@
     - name: Merge configs
       ios_config:
         src: ./configs/{{ inventory_hostname }}.conf
-        diff_against: startup
+        diff_against: running
         defaults: false
       register: changes
     - debug: var=changes
@@ -35,8 +35,7 @@
     - name: Merge configs
       ios_config:
         src: ./configs/{{ inventory_hostname }}.conf
-        diff_against: startup
+        diff_against: running
         defaults: false
-        match: none
       register: changes
     - debug: var=changes

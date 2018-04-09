@@ -21,9 +21,10 @@ router bgp {{ hostvars[inventory_hostname].bgp_asn }}
 {% for host in groups['pe'] %}
 {% if host != inventory_hostname %}
   neighbor {{ pe_vrf_gwan_container_subnet | ipsubnet(20, hostvars[host].pe_index) | ipaddr(10) | ipaddr('address') }} activate
-  neighbor {{ pe_vrf_gwan_container_subnet | ipsubnet(20, hostvars[host].pe_index) | ipaddr(10) | ipaddr('address') }} send-community extended
-  neighbor {{ pe_vrf_gwan_container_subnet | ipsubnet(20, hostvars[host].pe_index) | ipaddr(10) | ipaddr('address') }} next-hop-self
   neighbor {{ pe_vrf_gwan_container_subnet | ipsubnet(20, hostvars[host].pe_index) | ipaddr(10) | ipaddr('address') }} send-community both
+{#neighbor {{ pe_vrf_gwan_container_subnet | ipsubnet(20, hostvars[host].pe_index) | ipaddr(10) | ipaddr('address') }} send-community extended #}
+  neighbor {{ pe_vrf_gwan_container_subnet | ipsubnet(20, hostvars[host].pe_index) | ipaddr(10) | ipaddr('address') }} next-hop-self
+{#neighbor {{ pe_vrf_gwan_container_subnet | ipsubnet(20, hostvars[host].pe_index) | ipaddr(10) | ipaddr('address') }} send-community both #}
 {% endif %}
 {% endfor %}
  exit-address-family

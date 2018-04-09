@@ -12,6 +12,6 @@ router ospf {{ pe_ospf_process_id }}
  network {{ pe_vrf_gwan_container_subnet | ipsubnet(20, hostvars[inventory_hostname].pe_index) | ipaddr(10) | ipaddr('address') }} 0.0.0.0 area 0
 {% for host in groups['pe'] %}
 {% if host != inventory_hostname %}
- neighbor {{ pe_ospf_int1_ip_subnet | ipaddr(hostvars[host].bgp_community_id) | ipaddr('address') }} cost 10
+ neighbor {{ pe_ospf_int1_ip_subnet | ipaddr(hostvars[host].bgp_community_id) | ipaddr('address') }} priority 0 poll-interval 120 cost 10
 {% endif %}
 {% endfor %}

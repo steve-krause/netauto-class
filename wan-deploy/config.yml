@@ -13,6 +13,20 @@
 #    - name: Get new backups of all hosts
 #      ios_config:
 #        backup: yes
+#- name: manually get current running config (required as bug workaround with Ansible 2.5)
+#  hosts: all
+#  gather_facts: no
+#  vars_files:
+#  - ~/Secure/passwords
+#  tasks:
+#  - ios_command:
+#      commands:
+#      - show running-config
+#    register: running_config
+#  - file: path=./running-configs/{{ inventory_hostname }}.running-config state=absent
+#  - file: path=./running-configs/{{ inventory_hostname }}.running-config state=touch
+#  - copy: content="{{ running_config.stdout[0] }}" dest=./running-configs/{{ inventory_hostname }}.running-config
+#  - debug: var=running_config
 - name: Merge CE configurations
   hosts: ce
   gather_facts: no
@@ -23,7 +37,9 @@
       ios_config:
         src: ./configs/{{ inventory_hostname }}.conf
         diff_against: running
-        defaults: false
+        defaults: no
+#       running_config: ./running-configs/{{ inventory_hostname }}.running-config
+        backup: yes
       register: changes
     - debug: var=changes
 - name: Merge PE configurations
@@ -36,6 +52,8 @@
       ios_config:
         src: ./configs/{{ inventory_hostname }}.conf
         diff_against: running
-        defaults: false
+        defaults: no
+#       running_config: ./running-configs/{{ inventory_hostname }}.running-config
+        backup: yes
       register: changes
     - debug: var=changes

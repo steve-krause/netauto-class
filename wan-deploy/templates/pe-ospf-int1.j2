@@ -1,8 +1,4 @@
-!!!!!!!!!!!!
-!
-! PE OSPF interface-1
-!
-!!!!!!!!!!!!
+
 interface {{ hostvars[inventory_hostname].ospf_int1 }}
  description {{ hostvars[inventory_hostname].ospf_int1_descr }}
  mtu {{ pe_ospf_int1_mtu }}

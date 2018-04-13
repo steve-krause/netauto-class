@@ -1,8 +1,4 @@
-!!!!!!!!!!!!
-!
-! CE BGP Routing
-!
-!!!!!!!!!!!!
+
 router bgp {{ hostvars[inventory_hostname].bgp_asn }}
  bgp router-id {{ ce_mgmt_int_container_subnet | ipaddr(hostvars[inventory_hostname].ce_index) | ipaddr('address') }}
  bgp log-neighbor-changes
@@ -12,7 +8,7 @@ router bgp {{ hostvars[inventory_hostname].bgp_asn }}
  neighbor {{ ce2pe_container_subnet | ipsubnet(ce2pe_masklength, link.ce2pe_link_index) | ipaddr(1) | ipaddr('address') }} description eBGP to {{ link.pe_name }}
 {% endif %}
 {% endfor %}
- !
+
  address-family ipv4
   network {{ ce_mgmt_int_container_subnet | ipaddr(hostvars[inventory_hostname].ce_index) | ipaddr('address') }} mask 255.255.255.255
 {% for link in ce2pe_link_list %}

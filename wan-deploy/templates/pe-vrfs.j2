@@ -1,24 +1,20 @@
-!!!!!!!!!!!!
-!
-! PE VRF definitions
-!
-!!!!!!!!!!!!
+
 vrf definition INET
  rd {{ hostvars[inventory_hostname].bgp_community_id }}:167
- !
+
  address-family ipv4
   route-target export {{ hostvars[inventory_hostname].bgp_community_id }}:167
   route-target import {{ hostvars[inventory_hostname].bgp_community_id }}:167
  exit-address-family
- !
+
  address-family ipv6
   route-target export {{ hostvars[inventory_hostname].bgp_community_id }}:167
   route-target import {{ hostvars[inventory_hostname].bgp_community_id }}:167
  exit-address-family
-!
+
 vrf definition gWAN
  rd {{ hostvars[inventory_hostname].bgp_asn }}:1
- !
+
  address-family ipv4
   route-target export {{ hostvars[inventory_hostname].bgp_asn }}:1
   route-target import {{ hostvars[inventory_hostname].bgp_asn }}:1

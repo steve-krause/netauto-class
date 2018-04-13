@@ -1,8 +1,4 @@
-!!!!!!!!!!!!
-!
-! CE to PE point-to-point links
-!
-!!!!!!!!!!!!
+
 {% for link in ce2pe_link_list %}
 {% if link.pe_name == inventory_hostname %}
 interface {{ link.pe_int }}

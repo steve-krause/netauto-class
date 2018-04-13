@@ -1,8 +1,4 @@
-!!!!!!!!!!!!
-!
-! PE BGP Router
-!
-!!!!!!!!!!!!
+
 router bgp {{ hostvars[inventory_hostname].bgp_asn }}
  bgp router-id {{ pe_vrf_gwan_container_subnet | ipsubnet(20, hostvars[inventory_hostname].pe_index) | ipaddr(10) | ipaddr('address') }}
  bgp cluster-id {{ hostvars[inventory_hostname].bgp_asn }}
@@ -16,7 +12,7 @@ router bgp {{ hostvars[inventory_hostname].bgp_asn }}
  neighbor {{ pe_vrf_gwan_container_subnet | ipsubnet(20, hostvars[host].pe_index) | ipaddr(10) | ipaddr('address') }} description {{ host }}
 {% endif %}
 {% endfor %}
- !
+
  address-family vpnv4
 {% for host in groups['pe'] %}
 {% if host != inventory_hostname %}
@@ -28,7 +24,7 @@ router bgp {{ hostvars[inventory_hostname].bgp_asn }}
 {% endif %}
 {% endfor %}
  exit-address-family
- !
+
  address-family ipv4 vrf gWAN
   bgp router-id {{ pe_vrf_gwan_container_subnet | ipsubnet(20, hostvars[inventory_hostname].pe_index) | ipaddr(11) | ipaddr('address') }}
 {% for link in ce2pe_link_list %}

@@ -1,0 +1,19 @@
+---
+vars:
+  neighbor:
+    neighbor: "{{ item.neighbor }}"
+    ver: "{{ item.ver }}"
+    as: "{{ item.as }}"
+    msg_rx: "{{ item.msg_rx }}"
+    msg_tx: "{{ item.msg_tx }}"
+    tbl_ver: "{{ item.tbl_ver }}"
+    in_q: "{{ item.in_q }}"
+    out_q: "{{ item.out_q }}"
+    up_or_down_time: "{{ item.up_or_down_time }}"
+    state_or_nprefix: "{{ item.state_or_nprefix }}"
+    up: "{{ item.state_or_nprefix not in ('Idle', 'Connect', 'Active', 'OpenSent', 'OpenConfirm', 'Established') }}"
+keys:
+  neighbors:
+    type: list
+    value: "{{ neighbor }}"
+    items: "^(?P<neighbor>\\d+\\.\\d+\\.\\d+\\.\\d+)\\s+(?P<ver>\\d+)\\s+(?P<as>\\d+)\\s+(?P<msg_rx>\\d+)\\s+(?P<msg_tx>\\d+)\\s+(?P<tbl_ver>\\d+)\\s+(?P<in_q>\\d+)\\s+(?P<out_q>\\d+)\\s+(?P<up_or_down_time>[a-z0-9\\:]+)\\s+(?P<state_or_nprefix>\\w+)"

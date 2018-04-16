@@ -1,0 +1,13 @@
+---
+vars:
+  neighbor:
+    id: "{{ item.id }}"
+    state: "{{ item.state }}"
+    up: "{{ item.state == 'FULL' }}"
+    address: "{{ item.address }}"
+    interface: "{{ item.interface }}"
+keys:
+  neighbors:
+    type: list
+    value: "{{ neighbor }}"
+    items: "^(?P<id>\\d+\\.\\d+\\.\\d+\\.\\d+)[ 0-9]+(?P<state>[A-Z0-9-]+).*?(?P<address>\\d+\\.\\d+\\.\\d+\\.\\d+)\\s+(?P<interface>\\S+)"

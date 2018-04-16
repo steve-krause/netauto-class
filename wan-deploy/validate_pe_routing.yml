@@ -1,0 +1,34 @@
+---
+- name: Retrieve OSPF neighbor information
+  hosts: pe
+  gather_facts: no
+  vars_files:
+  - ~/Secure/passwords
+  tasks:
+    - name: show ip ospf neighbor on all PEs
+      ios_command:
+        commands: 'show ip ospf neighbor'
+      register: ospf_printout
+    - name: Parse ospf_printout and convert to datastructure
+      set_fact: ospf_neighbors="{{ ospf_printout.stdout[0] | parse_cli('parse_ios_ospf_neighbors.yml') }}"
+#    - debug:
+#        msg: >
+#          {{ ospf_printout.stdout[0] | parse_cli('parse_ios_ospf_neighbors.yml') }}
+#    - debug:
+#        msg: >
+#          {{ ospf_neighbors.neighbors[0].up }}
+    - name: Loop through OSPF neighbors and look for ones that are not UP
+      debug:
+        msg: "{{ inventory_hostname }}: {{ item.id }} is in state {{ item.state }}"
+      with_items: "{{ ospf_neighbors.neighbors }}"
+      when: item.up
+#    - name: show ip bgp vpnv4 all summary on all PEs
+#      ios_command:
+#        commands: 'show ip bgp vpnv4 all summary'
+#      register: bgp_printout
+#    - set_fact:
+#        bgp_neighbors: "{{ bgp_printout.stdout[0] | parse_cli('parse_ios_bgp_summary.yml') }}"
+#    - debug:
+#        msg: >
+#          {{ bgp_printout.stdout[0] | parse_cli('parse_ios_bgp_summary.yml') }}
+#      when: bgp_printout

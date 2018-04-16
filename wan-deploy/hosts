@@ -11,6 +11,7 @@ ce1
 ce2
 ce3
 ce4
+cd
 
 [all:vars]
 ansible_ssh_common_args='-o StrictHostKeyChecking=no'

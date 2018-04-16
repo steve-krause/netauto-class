@@ -26,7 +26,7 @@
 
 <p><b>Version-2: Changing Network State</b></p>
 
-<p>Generate the configuration using the data-model from the previous assignment (templates slightly modified and cleaned up since ver-1)</p>
+<p>Generate the configuration using the data-model from the previous assignment. Templates slightly modified and cleaned up since ver-1. Adding nodes is now more logically a matter of adding a new node yaml file (with the required vars) in the host_vars dir, add the new links in the includes/ce2pe_links.yml file, and adding the new node to the hosts file.</p>
 
 <p>Can successfully push the configuration to all the WAN nodes using the ios_config module. Found a behavioral difference between module behavior in 2.4 and 2.5. Seems to be a bug in 2.5 where "show run all" is used for comparison regardless of how you set the "defaults" attribute. I applied a workaround, but if they ever fix the bug the workaround of using the "show run all" version of the 'ospf neighbor' settings will be reverted and likely break the playbook until I revert to the "show run" version of the line in the template.</p>
 
